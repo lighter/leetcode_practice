@@ -1,6 +1,3 @@
-# Ruby
-
-```
 # I = 1
 # V = 5
 # X = 10
@@ -58,4 +55,3 @@ puts roman_to_int('XCIX') # 99
 puts roman_to_int('IX') # 9
 puts roman_to_int('XIV') # 14
 puts roman_to_int('DCXXI') # 621
-```
