@@ -1,49 +1,36 @@
-'use strict';
-function UndirectedGraphNode(label)
-{
-  this.label = label;
-  this.neighbors = [];
-}
+/**
+ * Definition for undirected graph.
+ * function UndirectedGraphNode(label) {
+ *     this.label = label;
+ *     this.neighbors = [];   // Array of UndirectedGraphNode
+ * }
+ */
 
-let cloneGraph = function(graph)
-{
-    if ( ! graph )
-    {
+/**
+ * @param {UndirectedGraphNode} graph
+ * @return {UndirectedGraphNode}
+ */
+ var cloneGraph = function(graph) {
+    if (!graph)
         return null;
-    }
 
-    let clone_map = new Map();
+    var hash = {};
 
-    let dfs = function (node)
-    {
-        if ( ! clone_map.has(node.label))
-        {
-            clone_map.set(node.label, new UndirectedGraphNode(node.label));
+    return dfs(graph);
+
+    function dfs(node) {
+        var label = node.label;
+        var newNode = new UndirectedGraphNode(label);
+        hash[label] = newNode;
+
+        for (var i = 0, len = node.neighbors.length; i < len; i++) {
+            var item = node.neighbors[i];
+            if (hash[item.label] !== undefined)
+                newNode.neighbors.push(hash[item.label]);
+            else
+                newNode.neighbors.push(dfs(item));
         }
 
-        // neighbors
-        node.neighbors.forEach(function(neighbor) {
-            if ( ! clone_map.has(neighbor.label) )
-            {
-                dfs(neighbor);
-            }
-
-            clone_map.get(node.label).neighbors.push(neighbor.label);
-        });
-    };
-
-    dfs(graph);
-
-    return clone_map.get(graph.label);
+        return newNode;
+    }
 };
-
-
-let node0 = new UndirectedGraphNode(0);
-let node1 = new UndirectedGraphNode(1);
-let node2 = new UndirectedGraphNode(2);
-
-node0.neighbors.push(node1, node2);
-node1.neighbors.push(node0, node2);
-node2.neighbors.push(node0, node1, node2, node2);
-
-console.log(cloneGraph(node0));
