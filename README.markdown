@@ -4,3 +4,4 @@
 [133. Clone Graph](https://github.com/lighter/leetcode_practice/blob/master/133_Clone_Graph.js)
 [138. Copy List with Random Pointer](https://github.com/lighter/leetcode_practice/blob/master/138_Copy_List_with_Random_Pointer.js)
 [447. Number of Boomerangs](https://github.com/lighter/leetcode_practice/blob/master/447_Number_of_Boomerangs.rb)
+[2. Two Sum]()
